@@ -19,5 +19,6 @@ from detection.views import storeValues,mainMethod
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('connect/',mainMethod)
+    path('connect/',mainMethod),
+    path('initialize/',storeValues)
 ]
