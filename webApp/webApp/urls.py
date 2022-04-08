@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from detection.views import storeValues,mainMethod
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('connect/',mainMethod),
-    path('initialize/',storeValues)
+    path('initialize/',storeValues),
 ]
