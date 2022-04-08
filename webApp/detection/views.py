@@ -43,14 +43,13 @@ def storeValues(request):
         next(reader,None)
         count = 0
         for row in reader:
-            count = count + 1
+            if row[1] == "nothate":
+                count = count + 1
             #print(row)
             #break
-            _, created = myDataset.objects.create(
-                text=row[0],
-                label=row[1],
-                split=row[2],
-                author=row[3] 
+                _, created = myDataset.objects.create(
+                    text=row[0],
+                    author=row[3] 
                 ) 
             if count == 10:
                break     
