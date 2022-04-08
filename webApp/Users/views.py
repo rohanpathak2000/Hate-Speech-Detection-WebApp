@@ -9,10 +9,8 @@ def register(request):
     ## else
         ## Redirect to home
 
-def login(request):
-    ## Login code
-    ## If username or pwd incorrect
-        ## Redirect back to login with message
-    ## else
-        ## Redirect to home
+    return render(request,'register.html')
+
+
+
 
