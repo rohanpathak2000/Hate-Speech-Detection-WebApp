@@ -1,22 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from nltk.tokenize import sent_tokenize, word_tokenize
-import nltk
-# Create your views here.
-from nltk.corpus import stopwords
-import re
-from nltk.stem import WordNetLemmatizer
-import numpy as np
-import pandas as pd
-from sklearn.naive_bayes import GaussianNB
 
 import pickle
 import csv
 
 from .models import myDataset
-
-from sklearn.linear_model import LogisticRegression
-
 
 import os
 
@@ -41,7 +29,7 @@ def enterMessage(request):
                     text = test,
                     author = curr_user.username
                 )
-        else:
+    
             # Show sign-in page
 
 
