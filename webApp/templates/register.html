@@ -4,9 +4,9 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {font-family: Arial, Helvetica, sans-serif;background-image: url('{% static 'test.png' %}');
+body {font-family: Arial, Helvetica, sans-serif;background-image: url("{% static 'test.png' %}"); 
 background-repeat: no-repeat;background-attachment: fixed;  
-background-size: cover;}
+background-size : cover;}
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
@@ -62,6 +62,7 @@ img.avatar {
 
 .container {
   padding: 16px;
+  align-items :left ;
 }
 
 span.psw {
@@ -139,68 +140,60 @@ span.psw {
 <body>
 
 
+
 <div class="container10">  
   <h2>Welcome</h2>
   <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Get Started</button>
-  </div> 
 
 
 
-<div id="id01" class="modal">
+
+  <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="/action_page.php" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      
-    </div>
-    <form action="register" method="POST">
+    <form class="modal-content animate" action="." method="post">
       {% csrf_token %}
-    <div class="container">
-      
-      {% for message in messages %}
-      {% if message == 'Username taken' %}
-        {{message}}
-      {% endif %}
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+       
+      </div>
+  
+      <div class="container">
+        <label for="uname" ><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
 
-      <label for="first_name"><b>First Name</b></label>
-      <input type="text" placeholder="Enter First Name" name="first_name" required>
+        <label for="fname"><b>First Name</b></label>
+        <input type="text" placeholder="First Name" name="first_name" required>
 
-      <label for="last_name"><b>Last Name</b></label>
-      <input type="text" placeholder="Enter Last Name" name="last_name" required>
-      {% if message == 'Email taken' %}
-        {{message}}
-      {% endif %}
-      <label for="email"><b>E-mail</b></label>
-      <input type="text" placeholder="Enter E-mail" name="email" required>
+        <label for="lname"><b>Last Name</b></label>
+        <input type="text" placeholder="Last Name" name="last_name" required>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+        <label for="email"><b>E-mail</b></label>
+        <input type="text" placeholder="E-mail" name="email" required>
+  
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+          
+        <button type="submit">Register</button>
         
-      <button type="submit">Register</button>
-      
-    </div>
-  </form>
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Already Registered <a href="#">Login</a></span>
-    </div>
-    {% endfor %}
-  </form>
-</div>
-
-<script>
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
-
+      </div>
+  
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Already Registered <a href="#">Login</a></span>
+      </div>
+    </form>
+  </div>
+  
+  <script>
+  // Get the modal
+  var modal = document.getElementById('id01');
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  </script>
 </body>
 </html>
