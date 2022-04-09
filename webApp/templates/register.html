@@ -153,8 +153,14 @@ span.psw {
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       
     </div>
-
+    <form action="register" method="POST">
+      {% csrf_token %}
     <div class="container">
+      
+      {% for message in messages %}
+      {% if message == 'Username taken' %}
+        {{message}}
+      {% endif %}
       <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
 
@@ -163,7 +169,9 @@ span.psw {
 
       <label for="last_name"><b>Last Name</b></label>
       <input type="text" placeholder="Enter Last Name" name="last_name" required>
-
+      {% if message == 'Email taken' %}
+        {{message}}
+      {% endif %}
       <label for="email"><b>E-mail</b></label>
       <input type="text" placeholder="Enter E-mail" name="email" required>
 
@@ -173,11 +181,12 @@ span.psw {
       <button type="submit">Register</button>
       
     </div>
-
+  </form>
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
       <span class="psw">Already Registered <a href="#">Login</a></span>
     </div>
+    {% endfor %}
   </form>
 </div>
 

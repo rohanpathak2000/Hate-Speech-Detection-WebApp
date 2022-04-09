@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 # Create your views here.
+from django.contrib import messages
 
 def register(request):
     if request.method == 'POST':
@@ -9,11 +10,43 @@ def register(request):
         email = request.POST['email']
         fname = request.POST['first_name']
         lname = request.POST['last_name']
-        user = User.objects.create_user(username = uname,
-                                        
-                                        )
-    return render(request,'register.html')
+        if User.objects.filter(username = username).exists():
+            print("Username taken")
+            messages.info(request,'Username already taken')
+            return redirect('register')
+        elif User.objects.filter(email = email).exists():
+            print("Email taken")
+            messages.info(request,'Email Taken')
+            return redirect('register')
+        else:
+            user = User.objects.create_user(username = username,
+                                        password = pwd,
+                                        email = email,
+                                        first_name = fname,
+                                        last_name = lname
+            )
+            user.save()
+            print("User registered")
+            auth.login(request,user)
+            return redirect('/')
+    else:
+        return render(request,'register.html')
 
+                                        
+
+def login(request):
+    if request.method == 'POST':
+        uname = request.POST['uname']
+        pwd = request.POST['psw']
+        user = auth.authenticate(username = uname, password = pwd)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
+    else:
+        return render(request,'login.html')
+
+def home(request):
+    return render(request,'index.html')
 
 
 
