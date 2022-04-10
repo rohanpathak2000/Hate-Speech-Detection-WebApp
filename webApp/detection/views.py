@@ -73,17 +73,18 @@ def home(request):
         file_path = os.path.join(BASE_DIR,os.path.basename('log_reg_model.pkl'))
         vect, logReg = pickle.load(open(file_path,'rb'))
         new_sample = []
-        new_sample = vect.transform(test)
         new_sample = vect.transform(new)
         pred = logReg.predict(new_sample)
         if request.user.is_authenticated:
             if pred == 0:
+                curr_user = request.user
                 myDataset.objects.create (
-                    text = test,
+                    text = test[0],
                     author = curr_user.username
                 )
+                return redirect('/')
             else:
-                messages.info('Hate Speech Detected')
+                messages.info(request,'Hate Speech Detected')
                 return redirect('/')
     
             # Show sign-in page
