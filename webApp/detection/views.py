@@ -20,6 +20,7 @@ def enterMessage(request):
         new_tweet = request.POST['tweet']
         file_path = os.path.join(BASE_DIR,os.path.basename('log_reg_model.pkl'))
         vect, logReg = pickle.load(open(file_path,'rb'))
+        new_sample = []
         new_sample = vect.transform(test)
         pred = logReg.predict(new_sample)
         if request.user.is_authenticated:
