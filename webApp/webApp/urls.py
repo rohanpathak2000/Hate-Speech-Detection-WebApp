@@ -22,7 +22,7 @@ urlpatterns = [
     #path('connect/',mainMethod),
     path('initialize/',storeValues),
     path('register/',register),
-    path('login',login),
+    path('login/',login),
     path('',home)
 
 ]

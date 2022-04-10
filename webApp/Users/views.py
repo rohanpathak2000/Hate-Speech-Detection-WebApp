@@ -43,7 +43,7 @@ def login(request):
             auth.login(request, user)
             return redirect('/')
     else:
-        return render(request,'login.html')
+        return render(request,'signin.html')
 
 def home(request):
     return render(request,'index.html')
