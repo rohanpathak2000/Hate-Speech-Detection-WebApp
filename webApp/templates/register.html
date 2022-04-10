@@ -142,11 +142,13 @@ span.psw {
   {% for message in messages %}
   {% if message == 'Username taken' %}
   //Update uname span
+  console.log(message)
   document.getElementById("invalidUname").innerHTML = {{message}}
   {% endif %}
   {% if message == 'Email taken' %}
   //Update email span
   document.getElementById("invalidEmail").innerHTML = {{message}}
+  console.log(message)
   {% endif %}
   {% endfor %}
 </script>

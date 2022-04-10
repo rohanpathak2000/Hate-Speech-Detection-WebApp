@@ -78,21 +78,21 @@ def home(request):
             if pred == 0:
                 curr_user = request.user
                 myDataset.objects.create(
-                    text = test,
+                    text = test[0],
                     author = curr_user.username
                 )
             else:
-                messages.info('Hate Speech Detected')
+                messages.info(request,'Hate Speech Detected')
             return redirect('/')
     
         else:
-            return redirect('signin')    # Show sign-in page
+            return redirect('/login')    # Show sign-in page
     else:
         querySet = myDataset.objects.all()
         obj = {'qs' : querySet}
         return render(request,'index.html',obj)
 
-
+    
 def storeValues(request):
      with open("C:\\Win Sem 21-22\\CSE2026 - CC\\Project\\Assets\\dataset.csv") as f:
         reader = csv.reader(f)
@@ -107,7 +107,7 @@ def storeValues(request):
                     text=row[0],
                     author=row[3] 
                 ) 
-            if count == 10:
+            if count == 40:
                break     
         
                 
