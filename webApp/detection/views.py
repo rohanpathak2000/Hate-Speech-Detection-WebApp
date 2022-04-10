@@ -71,6 +71,7 @@ def home(request):
         test.append(new_tweet)
         new = textPreprocessing(test)
         file_path = os.path.join(BASE_DIR,os.path.basename('log_reg_model.pkl'))
+        
         vect, logReg = pickle.load(open(file_path,'rb'))
         new_sample = vect.transform(new)
         pred = logReg.predict(new_sample)
@@ -94,7 +95,8 @@ def home(request):
 
     
 def storeValues(request):
-     with open("C:\\Win Sem 21-22\\CSE2026 - CC\\Project\\Assets\\dataset.csv") as f:
+    csv_file_path = os.path.join(BASE_DIR,os.path.basename('dataset.csv'))
+    with open(csv_file_path) as f:
         reader = csv.reader(f)
         next(reader,None)
         count = 0
