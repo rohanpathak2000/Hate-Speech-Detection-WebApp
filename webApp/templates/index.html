@@ -5,8 +5,10 @@
         </title>
     </head>
     <body>
-        Tweets :<p id="twt"></p><br>
-        Author :<p id="author"></p>
+        {% for object in qs %}
+        Tweets :<p id="twt">{{object.text }}</p><br>
+        Author :<p id="author">{{object.author}}</p>
+        {% endfor %}
         Tweet :<input type="text" name="tweet">
     </body>
 </html>
