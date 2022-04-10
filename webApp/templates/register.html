@@ -138,8 +138,20 @@ span.psw {
 </style>
 </head>
 <body>
-
-
+<script>
+  {% for message in messages %}
+  {% if message == 'Username taken' %}
+  //Update uname span
+  console.log(message)
+  document.getElementById("invalidUname").innerHTML = {{message}}
+  {% endif %}
+  {% if message == 'Email taken' %}
+  //Update email span
+  document.getElementById("invalidEmail").innerHTML = {{message}}
+  console.log(message)
+  {% endif %}
+  {% endfor %}
+</script>
 
 <div class="container10">  
   <h2>Welcome</h2>
@@ -149,24 +161,25 @@ span.psw {
 
 
   <div id="id01" class="modal">
-  
     <form class="modal-content animate" action="." method="post">
       {% csrf_token %}
       <div class="imgcontainer">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
        
       </div>
-  
+      
       <div class="container">
+        <span id = "invalidUname"></span>
         <label for="uname" ><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="uname" required>
-
+        
         <label for="fname"><b>First Name</b></label>
         <input type="text" placeholder="First Name" name="first_name" required>
 
         <label for="lname"><b>Last Name</b></label>
         <input type="text" placeholder="Last Name" name="last_name" required>
 
+        <span id="invalidEmail"></span>
         <label for="email"><b>E-mail</b></label>
         <input type="text" placeholder="E-mail" name="email" required>
   
@@ -176,12 +189,15 @@ span.psw {
         <button type="submit">Register</button>
         
       </div>
+      
   
       <div class="container" style="background-color:#f1f1f1">
         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
         <span class="psw">Already Registered <a href="#">Login</a></span>
       </div>
     </form>
+    
+    
   </div>
   
   <script>

@@ -5,8 +5,19 @@
         </title>
     </head>
     <body>
-        Tweets :<p id="twt"></p><br>
-        Author :<p id="author"></p>
-        Tweet :<input type="text" name="tweet">
+        
+        {% for object in qs %}
+        Tweets :<p id="twt">{{object.text }}</p><br>
+        Author :<p id="author">{{object.author}}</p>
+        {% endfor %}
+        <form action = "." method = "POST">
+            {% csrf_token %}
+            Tweet :<input type="text" name="tweet">
+            <input type="submit" value="submit"/>
+        </form>
+        {% if user.is_authenticated %}
+        <p>Logged in User : {{user.username}}</p>
+        {% endif %}
+        <button><a href="/logout">Logout</a></button>
     </body>
 </html>
