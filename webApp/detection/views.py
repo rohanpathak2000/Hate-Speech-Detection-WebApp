@@ -107,7 +107,7 @@ def storeValues(request):
                     text=row[0],
                     author=row[3] 
                 ) 
-            if count == 40:
+            if count == 8:
                break     
         
                 
