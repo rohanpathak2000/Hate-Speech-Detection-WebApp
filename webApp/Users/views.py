@@ -45,8 +45,11 @@ def login(request):
     else:
         return render(request,'signin.html')
 
-def home(request):
-    return render(request,'index.html')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
 
 
 
