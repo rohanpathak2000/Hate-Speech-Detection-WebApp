@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-8hdqnly^-#ehduf-d#vf&yf&^7q)qy#j146j^qtk=8pjkxiet7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -79,10 +79,11 @@ WSGI_APPLICATION = 'webApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CCProject',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'name':'localhost',
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
