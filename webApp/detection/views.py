@@ -114,4 +114,5 @@ def storeValues(request):
             if count == 8:
                break     
         
-                
+def clearValues(request):
+    myDataset.objects.all().delete()         
